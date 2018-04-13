@@ -1,4 +1,4 @@
-# A react app deployment tool.
+# A react app deployment tool
 
 Easily deploy create-react-app apps via sftp.
 
