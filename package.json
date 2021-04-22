@@ -21,9 +21,9 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "ssh2": "0.6.0",
-    "tar-fs": "1.16.0"
+    "tar-fs": "2.1.1"
   },
   "bin": {
-    "rup":"./cli.js"
+    "rup": "./cli.js"
   }
 }
