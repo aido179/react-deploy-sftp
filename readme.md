@@ -26,6 +26,8 @@ Create a react-up.json file as follows, somewhere in your project. This can be i
   "production":{
     "buildDir" :"../build",
     "remoteDir":"/var/www/myreactapp",
+    "remoteDirOwner": "owner",
+    "remoteDirGroup": "www-data",
     "tarballName":"temp-deployment.tar",
     "host": "1.1.1.1",
     "port": 22,
@@ -35,6 +37,8 @@ Create a react-up.json file as follows, somewhere in your project. This can be i
   "staging":{
     "buildDir" :"../build",
     "remoteDir":"/var/www/myreactapp",
+    "remoteDirOwner": "owner",
+    "remoteDirGroup": "www-data",
     "tarballName":"temp-deployment.tar",
     "host": "1.1.1.1",
     "port": 22,
@@ -52,6 +56,8 @@ Notes on the above example ```react-up.json``` file:
 - You may have as many of these groups as you like, named whatever you like.
 - "buildDir" is the location of the build relative to the current working directory.
 - "remoteDir" is the location of the react app on the remote server.
+- "remoteDirOwner" sets chown owner when making directory
+- "remoteDirGroup" sets chown group when making directory
 - "tarballName" is the name of the temporary file created during deployment.
 - "host" is the ip address of the server
 - "port" is the port for ssh/sftp

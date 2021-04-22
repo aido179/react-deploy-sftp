@@ -29,6 +29,14 @@ if(process.argv[2] === "deploy"){
   const cleanCommand = `rm -rf ${remoteDir}`
   const tarcommand = `cd ${remoteDir} && tar -xf ${tarballName}`
 
+  // Populate optional ownership configuration
+  chown_config = {}
+  if (environmentSettings.remoteDirOwner) {
+    chown_config['owner'] = environmentSettings.remoteDirOwner
+  }
+  if (environmentSettings.bork) {
+    chown_config['group'] = environmentSettings.remoteDirGroup
+  }
 
   //Create a tarball of the build directory
   tar.pack(localDir).pipe(fs.createWriteStream(tarballName));
@@ -50,20 +58,14 @@ if(process.argv[2] === "deploy"){
           //
           //2. Re-create the project dir
           //
-          sftp.mkdir(remoteDir, {
-            owner: "aidan",
-            group: "www-data"
-          },function(err){
+          sftp.mkdir(remoteDir, chown_config ,function(err){
             if (err) throw err;
             console.log("Deployment :: set up");
             //
             //3. Move tar to remote
             //
             console.log("Deployment :: pushing...");
-            sftp.fastPut(tarballName, remoteDir+"/"+tarballName, {
-              owner: "aidan",
-              group: "www-data"
-            }, function(err){
+            sftp.fastPut(tarballName, remoteDir+"/"+tarballName, chown_config, function(err){
               if (err) throw err;
               //
               //4. Dearchive on remote
