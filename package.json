@@ -20,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "fs": "0.0.1-security",
-    "ssh2": "0.6.0",
+    "ssh2": "1.4.0",
     "tar-fs": "2.1.1"
   },
   "bin": {
